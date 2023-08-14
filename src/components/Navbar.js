@@ -1,74 +1,40 @@
 import React from "react";
+import logo from "../images/logo.svg";
+import { navHref, tabsHref } from "./Data";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-center">
         <div className="nav-header">
-          <img src="./images/logo.svg" className="nav-logo" alt="backroads" />
+          <img src={logo} className="nav-logo" alt="backroads" />
           <button type="button" className="nav-toggle" id="nav-toggle">
             <i className="fas fa-bars"></i>
           </button>
         </div>
-        {/* <!-- left this comment on purpose --> */}
         <ul className="nav-links" id="nav-links">
-          <li>
-            <a href="#home" className="nav-link">
-              {" "}
-              home
-            </a>
-          </li>
-
-          <li>
-            <a href="#about" className="nav-link">
-              {" "}
-              about{" "}
-            </a>
-          </li>
-
-          <li>
-            <a href="#services" className="nav-link">
-              {" "}
-              services{" "}
-            </a>
-          </li>
-
-          <li>
-            <a href="#tours" className="nav-link">
-              {" "}
-              tours
-            </a>
-          </li>
+          {tabsHref.map((eachHref) => {
+            return (
+              <li key={eachHref.id}>
+                <a href={eachHref.href} className="nav-link">
+                  {" "}
+                  {eachHref.name}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <ul className="nav-icons">
-          <li>
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              className="nav-icon"
-            >
-              <i className="fab fa-facebook"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              className="nav-icon"
-            >
-              <i className="fab fa-twitter"></i>
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.twitter.com"
-              target="_blank"
-              className="nav-icon"
-            >
-              <i className="fab fa-squarespace"></i>
-            </a>
-          </li>
+          {navHref.map((eachHref) => {
+            return (
+              <li key={eachHref.id}>
+                <a href={eachHref.href} target="_blank" className="nav-icon">
+                  <i className={eachHref.name}></i>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </nav>
@@ -76,3 +42,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+export { tabsHref, navHref };
